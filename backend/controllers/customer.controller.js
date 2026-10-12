@@ -137,7 +137,7 @@ export const changePassword = async (req, res) => {
 
     const oldMatches = await bcrypt.compare(oldPassword, customer.password);
     if (!oldMatches) {
-      return res.status(401).json({ success: false, message: "Old password is incorrect" });
+      return res.status(400).json({ success: false, message: "Old password is incorrect" });
     }
 
     if (await bcrypt.compare(newPassword, customer.password)) {
