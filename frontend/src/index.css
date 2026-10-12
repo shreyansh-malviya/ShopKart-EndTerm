@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+/* ShopKart design tokens: warm "market ledger" palette */
+@theme {
+  --color-paper: #f4eee3;
+  --color-card: #fffbf4;
+  --color-ink: #1b1a17;
+  --color-ink-soft: #5b574e;
+  --color-ink-faint: #8f897c;
+  --color-marigold: #e9a23b;
+  --color-marigold-soft: #f8e2b8;
+  --color-chili: #b8401b;
+  --color-chili-soft: #f6d9cc;
+  --color-leaf: #2f6b4f;
+  --color-leaf-soft: #d5e7da;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Instrument Sans", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --shadow-hard: 4px 4px 0 0 #1b1a17;
+  --shadow-hard-sm: 2px 2px 0 0 #1b1a17;
+  --shadow-hard-lg: 7px 7px 0 0 #1b1a17;
+
+  --animate-rise: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pop: pop 0.25s ease-out both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.25);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    /* faint paper grain made from two layered dot grids */
+    background-image:
+      radial-gradient(rgba(27, 26, 23, 0.05) 1px, transparent 1px),
+      radial-gradient(rgba(27, 26, 23, 0.035) 1px, transparent 1px);
+    background-size: 22px 22px, 13px 13px;
+    background-position: 0 0, 6px 9px;
+  }
+
+  ::selection {
+    background: var(--color-marigold);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Card with an ink border and hard offset shadow */
+  .panel {
+    @apply rounded-xl border-2 border-ink bg-card shadow-hard;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-ink px-4 py-2.5 text-sm font-semibold transition-all duration-150 select-none;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn:not(:disabled):hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 0 var(--color-ink);
+  }
+  .btn:not(:disabled):active {
+    transform: translate(1px, 1px);
+    box-shadow: none;
+  }
+  .btn-primary {
+    @apply bg-ink text-paper;
+  }
+  .btn-accent {
+    @apply bg-marigold text-ink;
+  }
+  .btn-ghost {
+    @apply bg-card text-ink;
+  }
+  .btn-danger {
+    @apply bg-card text-chili border-chili;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-semibold tracking-wide text-ink-soft uppercase;
+  }
+  .field {
+    @apply w-full rounded-lg border-2 border-ink bg-card px-3.5 py-2.5 text-[15px] text-ink placeholder:text-ink-faint transition-shadow duration-150;
+  }
+  .field:focus {
+    outline: none;
+    box-shadow: 3px 3px 0 0 var(--color-marigold);
+  }
+  .field[aria-invalid="true"] {
+    @apply border-chili bg-chili-soft/40;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[11px] font-medium tracking-[0.18em] text-ink-soft uppercase;
+  }
+
+  /* dashed receipt divider */
+  .rule-dashed {
+    border-top: 2px dashed rgba(27, 26, 23, 0.35);
+  }
+
+  .skeleton {
+    @apply rounded-md bg-ink/10;
+    animation: skeleton-pulse 1.2s ease-in-out infinite;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
