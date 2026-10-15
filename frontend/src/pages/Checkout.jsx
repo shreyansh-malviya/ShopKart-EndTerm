@@ -99,7 +99,8 @@ const Checkout = () => {
       order_id: checkout.razorpayOrderId,
       prefill: {
         name: shippingAddress.fullName,
-        contact: shippingAddress.phone,
+        // Razorpay expects +<country code><number>; keep the last 10 digits of the Indian mobile
+        contact: `+91${shippingAddress.phone.replace(/\D/g, "").slice(-10)}`,
         email: user?.email,
       },
       notes: { shopKartOrderId: checkout.shopKartOrderId },
