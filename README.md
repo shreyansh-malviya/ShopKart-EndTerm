@@ -4,6 +4,55 @@ Full-stack MERN commerce app built across Engineering Labs 01-06:
 authentication, product catalogue, wishlist, cart with global state, and
 checkout with Razorpay Test Mode payments and order history.
 
+## Screenshots
+
+All screenshots are from the running app: real data from MongoDB Atlas and a real
+Razorpay Test Mode payment.
+
+### Authentication
+
+| Login | Register |
+|-------|----------|
+| <img src="docs/screenshots/01-login.png" alt="Login page" width="100%"> | <img src="docs/screenshots/02-register.png" alt="Register page" width="100%"> |
+
+### Home
+
+Profile loaded from `GET /customers/me`, live cart and wishlist counts, and change password.
+
+<img src="docs/screenshots/03-home.png" alt="Home page with customer profile" width="100%">
+
+### Product catalogue
+
+| All products | Search, category filter and sort |
+|--------------|----------------------------------|
+| <img src="docs/screenshots/04-products.png" alt="Product listing" width="100%"> | <img src="docs/screenshots/05-products-filtered.png" alt="Electronics sorted by price, high to low" width="100%"> |
+
+| Product details | Wishlist |
+|-----------------|----------|
+| <img src="docs/screenshots/06-product-details.png" alt="Product details page" width="100%"> | <img src="docs/screenshots/07-wishlist.png" alt="Wishlist page" width="100%"> |
+
+### Cart and checkout
+
+| Cart (global state, derived totals) | Checkout with shipping form |
+|-------------------------------------|-----------------------------|
+| <img src="docs/screenshots/08-cart.png" alt="Cart page" width="100%"> | <img src="docs/screenshots/09-checkout.png" alt="Checkout page" width="100%"> |
+
+| Razorpay Test Mode checkout | Order placed after server-side signature verification |
+|-----------------------------|-------------------------------------------------------|
+| <img src="docs/screenshots/10-razorpay-checkout.png" alt="Razorpay checkout modal" width="100%"> | <img src="docs/screenshots/11-order-success.png" alt="Order success page" width="100%"> |
+
+### Orders
+
+| My Orders | Order details (status tracker, price snapshot) |
+|-----------|-----------------------------------------------|
+| <img src="docs/screenshots/12-orders.png" alt="My Orders page" width="100%"> | <img src="docs/screenshots/13-order-details.png" alt="Order details page" width="100%"> |
+
+### Mobile
+
+| Products | Orders |
+|----------|--------|
+| <img src="docs/screenshots/14-mobile-products.png" alt="Products on mobile" width="260"> | <img src="docs/screenshots/15-mobile-orders.png" alt="Orders on mobile" width="260"> |
+
 ## Stack
 
 | Layer    | Tech |
